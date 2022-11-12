@@ -1,4 +1,23 @@
-# ATM Calculator
+""" 
+This program/software is a basic ATM(Automated Teller Machine) Software that
+can do things like :
+
+1> Login , Signup 
+2> Deposit , WithDraw , See Graphs(of deposits and withdraw)
+3> Account Details , Transaction history
+
+Special Features of this ATM Project : 
+
+1> It consist of Audio instructions in it
+2> It can also show graph of deposits , withdraw
+3> Have security system like OTP , that occurs in the same text file 
+that is present in this directory
+
+"""
+
+
+# Importing necessary modules
+
 import pandas as pd
 from win32com.client import *
 import matplotlib.pyplot as plt
@@ -15,6 +34,13 @@ df1 = pd.read_csv('transachist.csv', index_col=0)
 print('WELCOME TO TATA ATMs')
 speaker.Speak('Welcome to t a t a Automated Teller Machines')
 
+
+""" 
+This function is handling the login process of the whole software 
+1> It takes input of all the required things and even
+checks for correct ( password , email and many more )
+
+"""
 
 def login():
     while True:
@@ -33,6 +59,10 @@ def login():
         print()
     return choice1
 
+""" This function checks whether the mail is correct or not 
+, it checks all the possible mistakes that can be in the gmail
+"""
+
 
 def checkGmail():
 
@@ -47,7 +77,10 @@ def checkGmail():
         print("Invalid Email")
         checkGmail()
 
-
+""" 
+This function checks whether the entered password is go to go or 
+not , as the password should be secure , should not be to easy
+"""
 def passCheck():
     l, u, p, d = 0, 0, 0, 0
     s = str(input('Password: '))
@@ -76,6 +109,9 @@ def passCheck():
         passCheck()
 
 
+# As the name suggest , it checks the correctness of aadhar number
+
+
 def aadharCheck():
     while True:
         try:
@@ -93,8 +129,10 @@ def aadharCheck():
         speaker.Speak('Wrong Data')
         print('Please Enter Again')
         speaker.Speak('Enter again')
-    return aadhar    
+    return aadhar
 
+# This function help in communicating between CSV file and 
+# Frontend
 
 def ver(usrnm):
     code = random.randint(1000, 9999)
@@ -103,6 +141,10 @@ def ver(usrnm):
     f.close()
     return code
 
+""" 
+This is the main driving method of the software , that initiate
+program havinf Login , Sign up and Exit option 
+"""
 
 def menu():
     print('TATA ATMs')
@@ -156,7 +198,7 @@ def menu():
         print()
 
         aadhar = aadharCheck()
-        
+
         while True:
 
             if usrnm in df.index:
@@ -218,22 +260,25 @@ def menu():
         print()
         afterlogin(usrnm)
 
+
+# This function helps in choice making in main menu
+
 def choiceMainMenu():
     while True:
-        
-            choice2 = int(input('Choice: '))
-            if str(choice2) not in '123456':
-                 speaker.Speak('Wrong Choice')
-                 continue
-            else:
-                return choice2 
-                
-                
-           
-               
-               
-        
-    
+
+        choice2 = int(input('Choice: '))
+        if str(choice2) not in '123456':
+            speaker.Speak('Wrong Choice')
+            continue
+        else:
+            return choice2
+
+""" 
+This is the second most important driving function that drives 
+the function after the login stage , here you can access to the 
+Graphs , Account Information and many more things
+"""
+
 def afterlogin(usrnm):
     print('Welcome {}'.format(df.loc[usrnm, 'name']))
     speaker.Speak('Welcome {}'.format(df.loc[usrnm, 'name']))
@@ -424,17 +469,22 @@ def afterlogin(usrnm):
         print()
         afterlogin(usrnm)
 
+# As the name suggest a choice checker function for graphs
+
 def graphChoiceChecker():
     while True:
-       
-        
+
         A = int(input('Choice: '))
         if str(A) not in "123":
             speaker.Speak("Wrong Choice")
             continue
-       
+
         return A
-        
+
+""" 
+This is the third important driving function that drives the
+function for the graph purposes
+"""
 def graphmenu(usrnm):
 
     speaker.Speak('Welcome to advanced a i graphical stat calculator')
@@ -447,11 +497,8 @@ def graphmenu(usrnm):
     P = ["Jan", "Feb", "March", "April", "May", "June",
          "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
     B = pd.read_csv("transachist.csv")
-   
-    
+
     A = graphChoiceChecker()
-  
-  
 
     day = []
     month = []
