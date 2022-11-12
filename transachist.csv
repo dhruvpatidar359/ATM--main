@@ -25,4 +25,5 @@ serno,usrnm,amt,stat,date,month
 23,test,75.0,Deposit,20200105.0,1.0
 24,test,765.0,Withdraw,20200105.0,1.0
 25,test,425.0,Deposit,20200105.0,1.0
-26,dhruv,456.0,Deposit,20221112,11
+26,dhruv,456.0,Deposit,20221112.0,11.0
+27,dhruv,345.0,Deposit,20221112,11

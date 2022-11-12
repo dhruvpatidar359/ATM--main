@@ -218,7 +218,22 @@ def menu():
         print()
         afterlogin(usrnm)
 
-
+def choiceMainMenu():
+    while True:
+        
+            choice2 = int(input('Choice: '))
+            if str(choice2) not in '123456':
+                 speaker.Speak('Wrong Choice')
+                 continue
+            else:
+                return choice2 
+                
+                
+           
+               
+               
+        
+    
 def afterlogin(usrnm):
     print('Welcome {}'.format(df.loc[usrnm, 'name']))
     speaker.Speak('Welcome {}'.format(df.loc[usrnm, 'name']))
@@ -234,18 +249,7 @@ def afterlogin(usrnm):
 
     print()
 
-    while True:
-        try:
-            choice2 = int(input('Choice: '))
-            if str(choice2) in list('123456'):
-                break
-            else:
-                print('Wrong Choice, Enter again')
-                speaker.Speak('Wrong Choice')
-        except Exception as e:
-            continue
-            print('Wrong Choice, Enter again')
-            speaker.Speak('Wrong Choice')
+    choice2 = choiceMainMenu()
 
     if choice2 == 5:
         graphmenu(usrnm)
