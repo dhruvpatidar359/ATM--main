@@ -420,7 +420,17 @@ def afterlogin(usrnm):
         print()
         afterlogin(usrnm)
 
-
+def graphChoiceChecker():
+    while True:
+       
+        
+        A = int(input('Choice: '))
+        if str(A) not in "123":
+            speaker.Speak("Wrong Choice")
+            continue
+       
+        return A
+        
 def graphmenu(usrnm):
 
     speaker.Speak('Welcome to advanced a i graphical stat calculator')
@@ -433,18 +443,11 @@ def graphmenu(usrnm):
     P = ["Jan", "Feb", "March", "April", "May", "June",
          "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
     B = pd.read_csv("transachist.csv")
-
-    while True:
-        try:
-            A = int(input('Choice: '))
-        except Exception as e:
-            print('Wrong Choice, Enter again')
-            speaker.Speak('Wrong Choice')
-            continue
-        if str(A) in list('123'):
-            break
-        print('Wrong Choice, Enter again')
-        speaker.Speak('Wrong Choice')
+   
+    
+    A = graphChoiceChecker()
+  
+  
 
     day = []
     month = []
