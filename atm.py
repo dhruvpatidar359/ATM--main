@@ -26,13 +26,17 @@ import pygame
 import random
 import datetime
 import re
+import cProfile
+import pstats
+from pstats import SortKey
 
 speaker = Dispatch('SAPI.SpVoice')
 df = pd.read_csv('logindata.csv', index_col=0)
 df1 = pd.read_csv('transachist.csv', index_col=0)
 
+
 print('WELCOME TO TATA ATMs')
-speaker.Speak('Welcome to t a t a Automated Teller Machines')
+speaker.Speak('Welcome to tata Automated Teller Machines')
 
 
 """ 
@@ -41,6 +45,7 @@ This function is handling the login process of the whole software
 checks for correct ( password , email and many more )
 
 """
+
 
 def login():
     while True:
@@ -59,12 +64,13 @@ def login():
         print()
     return choice1
 
+
 """ This function checks whether the mail is correct or not 
 , it checks all the possible mistakes that can be in the gmail
 """
 
 
-def checkGmail():
+def checkEmail():
 
     gml = str(input('Gmail ID: '))
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -75,12 +81,15 @@ def checkGmail():
 
     else:
         print("Invalid Email")
-        checkGmail()
+        checkEmail()
+
 
 """ 
 This function checks whether the entered password is go to go or 
 not , as the password should be secure , should not be to easy
 """
+
+
 def passCheck():
     l, u, p, d = 0, 0, 0, 0
     s = str(input('Password: '))
@@ -131,8 +140,9 @@ def aadharCheck():
         speaker.Speak('Enter again')
     return aadhar
 
-# This function help in communicating between CSV file and 
+# This function help in communicating between CSV file and
 # Frontend
+
 
 def ver(usrnm):
     code = random.randint(1000, 9999)
@@ -141,10 +151,12 @@ def ver(usrnm):
     f.close()
     return code
 
+
 """ 
 This is the main driving method of the software , that initiate
 program havinf Login , Sign up and Exit option 
 """
+
 
 def menu():
     print('TATA ATMs')
@@ -174,7 +186,7 @@ def menu():
         speaker.Speak('Kindly provide necessary informations')
         print()
 
-        gml = checkGmail()
+        gml = checkEmail()
         print()
 
         usrnm = str(input('UserName: '))
@@ -232,7 +244,7 @@ def menu():
 
         print('Welcome Sir\\Madam')
         print('Security Protocols Active')
-        speaker.Speak('Services Protocols active')
+        speaker.Speak('Security Protocols active')
         print()
 
         while True:
@@ -258,7 +270,7 @@ def menu():
             speaker.Speak('Wrong Password')
 
         print()
-        afterlogin(usrnm)
+        afterLogin(usrnm)
 
 
 # This function helps in choice making in main menu
@@ -273,13 +285,15 @@ def choiceMainMenu():
         else:
             return choice2
 
+
 """ 
 This is the second most important driving function that drives 
 the function after the login stage , here you can access to the 
 Graphs , Account Information and many more things
 """
 
-def afterlogin(usrnm):
+
+def afterLogin(usrnm):
     print('Welcome {}'.format(df.loc[usrnm, 'name']))
     speaker.Speak('Welcome {}'.format(df.loc[usrnm, 'name']))
     print()
@@ -297,7 +311,7 @@ def afterlogin(usrnm):
     choice2 = choiceMainMenu()
 
     if choice2 == 5:
-        graphmenu(usrnm)
+        graphMenu(usrnm)
 
     if choice2 == 6:
         menu()
@@ -311,7 +325,7 @@ def afterlogin(usrnm):
     Gmail: {}
     At Risk : No'''.format(df.loc[usrnm, 'name'], df.loc[usrnm, 'gender'], df.loc[usrnm, 'aadhar'], df.loc[usrnm, 'amount'], df.loc[usrnm, 'gml']))
 
-        afterlogin(usrnm)
+        afterLogin(usrnm)
 
     if choice2 == 2:
 
@@ -323,7 +337,7 @@ def afterlogin(usrnm):
         print(df1[df1['usrnm'] == usrnm])
 
         print()
-        afterlogin(usrnm)
+        afterLogin(usrnm)
 
     if choice2 == 3:
 
@@ -390,13 +404,10 @@ def afterlogin(usrnm):
         print('Cash Deposited')
         speaker.Speak('Cash Deposited')
 
-        if len(df1) == 30:
-            df1.drop(0, axix=0)
-            df1.index = range(29)
         df1.to_csv('transachist.csv')
 
         print()
-        afterlogin(usrnm)
+        afterLogin(usrnm)
 
     if choice2 == 4:
 
@@ -461,15 +472,13 @@ def afterlogin(usrnm):
         print('Cash Withdrawn')
         speaker.Speak('Cash withdrawn')
 
-        if len(df1) == 30:
-            df1.drop(0, axix=0)
-            df1.index = range(29)
         df1.to_csv('transachist.csv')
 
         print()
-        afterlogin(usrnm)
+        afterLogin(usrnm)
 
 # As the name suggest a choice checker function for graphs
+
 
 def graphChoiceChecker():
     while True:
@@ -481,11 +490,14 @@ def graphChoiceChecker():
 
         return A
 
+
 """ 
 This is the third important driving function that drives the
 function for the graph purposes
 """
-def graphmenu(usrnm):
+
+
+def graphMenu(usrnm):
 
     speaker.Speak('Welcome to advanced a i graphical stat calculator')
     print("*******Choose the type of data that you want to see*******")
@@ -498,39 +510,39 @@ def graphmenu(usrnm):
          "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
     B = pd.read_csv("transachist.csv")
 
-    A = graphChoiceChecker()
+    choiceForGraph = graphChoiceChecker()
 
     day = []
     month = []
-    monthname = []
-    daymonth = []
+    monthName = []
+    dayMonth = []
     npp = np.arange(1, 13)
 
-    if A == 1:
-        C = "Deposit"
-        D = B[B["usrnm"] == usrnm]
-        D = D[D["stat"] == C]
-        Depo = D["amt"]
-        Date = D["serno"]+1
+    if choiceForGraph == 1:
+        depString = "Deposit"
+        seriesUsr = B[B["usrnm"] == usrnm]
+        seriesUsr = seriesUsr[seriesUsr["stat"] == depString]
+        Depo = seriesUsr["amt"]
+        Date = seriesUsr["serno"]+1
 
-        for i in D["date"]:
+        for i in seriesUsr["date"]:
 
             i = str(i)
-            S = i[6:8]
+            seriesUser3 = i[6:8]
             E = i[4:6]
-            day.append(S)
+            day.append(seriesUser3)
             month.append(E)
         for i in month:
             for z in L:
                 if i == z:
-                    monthname.append(L[z])
+                    monthName.append(L[z])
                 else:
                     pass
 
         q = 0
         for i in day:
 
-            daymonth.append(i+monthname[q])
+            dayMonth.append(i+monthName[q])
             q = q+1
 
         plt.plot(Date, Depo, color="red", label="Deposit", marker="o")
@@ -538,7 +550,7 @@ def graphmenu(usrnm):
         plt.grid(True)
         plt.legend()
         plt.title("Amount deposited")
-        plt.xticks(Date, labels=daymonth)
+        plt.xticks(Date, labels=dayMonth)
         plt.xlabel("Date:------------------->>>>>>>>>>>>")
         plt.ylabel("Amount:------------------->>>>>>>>>>>>")
         speaker.Speak('Here is your graph')
@@ -546,79 +558,80 @@ def graphmenu(usrnm):
 
         day = []
         month = []
-        monthname = []
-        daymonth = []
-        afterlogin(usrnm)
+        monthName = []
+        dayMonth = []
+        afterLogin(usrnm)
 
-    elif A == 2:
-        C = "Withdraw"
-        D = B[B["usrnm"] == usrnm]
-        D = D[D["stat"] == C]
+    elif choiceForGraph == 2:
+        depString = "Withdraw"
+        seriesUsr = B[B["usrnm"] == usrnm]
+        seriesUsr = seriesUsr[seriesUsr["stat"] == depString]
 
-        Date = D["date"]
-        withd = D["amt"]
-        Date = D["serno"]+1
-        for i in D["date"]:
+        Date = seriesUsr["date"]
+        withdraw = seriesUsr["amt"]
+        Date = seriesUsr["serno"]+1
+        for i in seriesUsr["date"]:
 
             i = str(i)
-            S = i[6:8]
+            seriesUser3 = i[6:8]
             E = i[4:6]
-            day.append(S)
+            day.append(seriesUser3)
             month.append(E)
         for i in month:
             for z in L:
                 if i == z:
-                    monthname.append(L[z])
+                    monthName.append(L[z])
                 else:
                     pass
 
         q = 0
         for i in day:
 
-            daymonth.append(i+monthname[q])
+            dayMonth.append(i+monthName[q])
             q = q+1
 
-        plt.plot(Date, withd, color="red", label="Withdraw", marker="o")
+        plt.plot(Date, withdraw, color="red", label="Withdraw", marker="o")
         plt.grid(True)
         plt.legend()
         plt.title("Amount withdrawed")
         plt.xlabel("Date:------------------->>>>>>>>>>>>")
         plt.ylabel("Amount:------------------->>>>>>>>>>>>")
-        plt.xticks(Date, labels=daymonth)
+        plt.xticks(Date, labels=dayMonth)
         speaker.Speak('Here is your graph')
         plt.show()
 
         day = []
         month = []
-        monthname = []
-        daymonth = []
-        afterlogin(usrnm)
+        monthName = []
+        dayMonth = []
+        afterLogin(usrnm)
 
-    elif A == 3:
+    elif choiceForGraph == 3:
+
         # DEPOSIT
         dic = {}
-        D = B[B["usrnm"] == usrnm]
-        D = D[D["stat"] == "Deposit"]
-        T = D["month"]
-        T = list(T)
+        seriesUsr = B[B["usrnm"] == usrnm]
+        seriesUsr = seriesUsr[seriesUsr["stat"] == "Deposit"]
+        monthSeries = seriesUsr["month"]
+        monthSeries = list(monthSeries)
         y = 0
         x = 1
         for i in range(0, 12):
-            dic[P[y]] = T.count(x)
+            dic[P[y]] = monthSeries.count(x)
             y = y+1
             x = x+1
 
         dicv = list(dic.values())
         # Withdraw
         vic = {}
-        S = B[B["usrnm"] == usrnm]
-        S = S[S["stat"] == "Withdraw"]
-        J = S["month"]
-        J = list(J)
+        seriesUser3 = B[B["usrnm"] == usrnm]
+        seriesUser3 = seriesUser3[seriesUser3["stat"] == "Withdraw"]
+        monthSeries3 = seriesUser3["month"]
+        monthSeries3 = list(monthSeries3)
         y = 0
         x = 1
         for i in range(0, 12):
-            vic[P[y]] = J.count(x)
+            vic[P[y]] = monthSeries3.count(x)
             y = y+1
             x = x+1
 
@@ -636,7 +649,14 @@ def graphmenu(usrnm):
         speaker.Speak('Here is your graph')
         plt.show()
 
-        afterlogin(usrnm)
+        afterLogin(usrnm)
 
 
-menu()
+# This is the driver function
+
+if __name__ == "__main__":
+    cProfile.run("menu()", "output.dat")
+
+    with open("output_time.txt", "w") as f:
+        p = pstats.Stats("output.dat", stream=f)
+        p.sort_stats("time").print_stats()
