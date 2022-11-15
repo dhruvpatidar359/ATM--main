@@ -178,7 +178,6 @@ def menu():
         print()
 
         passw = passCheck()
-        
         print()
 
         name = str(input('Full Name: '))
@@ -195,7 +194,7 @@ def menu():
             speaker.Speak('Enter again')
         print()
 
-        aadhar = aadharCheck()
+        aadhar = call(["./aadharCheck"])
 
         while True:
 
@@ -259,17 +258,6 @@ def menu():
         afterLogin(usrnm)
 
 
-# This function helps in choice making in main menu
-
-def choiceMainMenu():
-    while True:
-
-        choice2 = int(input('Choice: '))
-        if str(choice2) not in '123456':
-            speaker.Speak('Wrong Choice')
-            continue
-        else:
-            return choice2
 
 
 """ 
@@ -294,7 +282,7 @@ def afterLogin(usrnm):
 
     print()
 
-    choice2 = choiceMainMenu()
+    choice2 = call(["./choiceAfterLogin"])
 
     if choice2 == 5:
         graphMenu(usrnm)

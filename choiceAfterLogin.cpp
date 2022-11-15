@@ -3,14 +3,18 @@ using namespace std;
 
 int afterLogin()
 {
+
     int choice;
+    cout << "Enter the Choice :";
     cin >> choice;
-    if (choice > 0 && choice < 4)
+    if (choice > 0 && choice < 7)
     {
         return choice;
     }
-    printf("invalid choice\n");
+    cout<< "invalid choice\n";
+
     afterLogin();
+
     return 0;
 }
 
