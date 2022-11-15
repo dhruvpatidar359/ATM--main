@@ -40,13 +40,6 @@ print('WELCOME TO TATA ATMs')
 speaker.Speak('Welcome to tata Automated Teller Machines')
 
 
-""" 
-This function is handling the login process of the whole software 
-1> It takes input of all the required things and even
-checks for correct ( password , email and many more )
-
-"""
-
 
 """ This function checks whether the mail is correct or not 
 , it checks all the possible mistakes that can be in the gmail
@@ -137,7 +130,7 @@ def ver(usrnm):
 
 """ 
 This is the main driving method of the software , that initiate
-program havinf Login , Sign up and Exit option 
+program having Login , Sign up and Exit option 
 """
 
 
@@ -456,6 +449,7 @@ def afterLogin(usrnm):
 
         print()
         afterLogin(usrnm)
+
 
 # As the name suggest a choice checker function for graphs
 

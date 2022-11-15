@@ -1,3 +1,7 @@
+// This file is checking whether the email input is correct
+// or not , incase of incorrectness it will , again ask for
+// the email .
+
 #include <iostream>
 #include <regex>
 #include <bits/stdc++.h>
