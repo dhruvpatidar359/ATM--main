@@ -20,6 +20,7 @@ that is present in this directory
 
 import pandas as pd
 from win32com.client import *
+from subprocess import call
 import matplotlib.pyplot as plt
 import numpy as np
 import pygame
@@ -47,22 +48,6 @@ checks for correct ( password , email and many more )
 """
 
 
-def login():
-    while True:
-        try:
-            choice1 = int(input('Choice: '))
-        except Exception as e:
-            print('Wrong Data')
-            speaker.Speak('Wrong Choice')
-            continue
-        if choice1 > 0 and choice1 < 4:
-            break
-        print('Wrong Choice')
-        speaker.Speak('Wrong Choice')
-        print('Enter again')
-        speaker.Speak('Enter Again')
-        print()
-    return choice1
 
 
 """ This function checks whether the mail is correct or not 
@@ -171,7 +156,7 @@ def menu():
     speaker.Speak('Enter your choice')
     print('Enter your choice(1 or 2 or 3)')
 
-    choice1 = login()
+    choice1 = call(["./choiceLogin"])
 
     print()
 
@@ -193,6 +178,7 @@ def menu():
         print()
 
         passw = passCheck()
+        
         print()
 
         name = str(input('Full Name: '))
@@ -403,7 +389,7 @@ def afterLogin(usrnm):
 
         print('Cash Deposited')
         speaker.Speak('Cash Deposited')
-
+        
         df1.to_csv('transachist.csv')
 
         print()

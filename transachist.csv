@@ -31,7 +31,11 @@ serno,usrnm,amt,stat,date,month
 29,dhruv,235.0,Deposit,20221113.0,11.0
 30,qwe,325.0,Deposit,20221113.0,11.0
 31,qwe,31.0,Withdraw,20221113.0,11.0
-32,dhruvp,400.0,Deposit,20221113,11
-33,dhruvp,200.0,Withdraw,20221113,11
-34,dhruvp,1000.0,Deposit,20221113,11
-35,dhruvp,200.0,Withdraw,20221113,11
+32,dhruvp,400.0,Deposit,20221113.0,11.0
+33,dhruvp,200.0,Withdraw,20221113.0,11.0
+34,dhruvp,1000.0,Deposit,20221113.0,11.0
+35,dhruvp,200.0,Withdraw,20221113.0,11.0
+36,dhruvpp,18000.0,Deposit,20221113.0,11.0
+37,dhruvpp,1346567.0,Deposit,20221113.0,11.0
+38,dhruvpp,10000.0,Withdraw,20221113.0,11.0
+39,dhruv,1023.0,Deposit,20221113,11
