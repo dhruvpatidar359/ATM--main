@@ -1,22 +1,31 @@
-#include<iostream>
+#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-long long int aadharCheck(){
+int main()
+{
+
     long long int aadharNumber;
-    cout << "Enter Your aadhar Number ";
-    cin >> aadharNumber;
+    while (true)
+    {
 
-    if(to_string(aadharNumber).length() == 12){
-        
-        return aadharNumber;
-        
+        cout << "Enter Your aadhar Number ";
+        cin >> aadharNumber;
+
+        if (to_string(aadharNumber).length() == 12)
+        {
+
+            fstream file;
+
+            // opening file "Gfg.txt"
+            // in out(write) mode
+            // ios::out Open for output operations.
+            file.open("checkAadhar.txt", ios::out);
+            file << to_string(aadharNumber);
+            file.close();
+            break;
+        }
     }
-    cout<<"invalid aadhar number\n";
 
-    aadharCheck();
     return 0;
-}
-
-int main(){
-     return aadharCheck();
 }
