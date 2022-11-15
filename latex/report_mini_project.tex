@@ -1,0 +1,123 @@
+
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\graphicspath{ {.C:/Users/dhruv/Desktop/ATM--main/} }
+\begin{document}
+Name:$\textbf{Dhruv Patidar}$\\
+
+Enrollment No:$\textbf{0801CS211036}$
+
+$$\textbf{Report on mini-project ( ATM )}$$
+
+$$Characterstics \hspace{5pt} of\hspace{5pt} MiniProject$$
+Starting Date/Time : 6 Nov ,2022 StartTime:10 AM Morning\\
+End Data/Time : 15 Nov ,2022 EndTime:11 PM \\
+Total Time Required :15 hours \\
+Total Line of Code : 600+ lines\\
+Number of Functions : 13\\\\
+$\textbf{Objectives of Project} :$ \\\\
+1$>$ This project is intended to have a better functionality in $\textbf{ATM}$ system , as this project also shows the graph for the withdraw and deposit per month and also display them separately\\\\
+2$>$ This project/software have audio facility in it , it also tells the instruction to the customer , like " Enter name ..." and also tells that what wrong they have entered therefore increasing the communication gap between the machines and human\\\\
+$\textbf{Function Descriptions} :$\\\\
+1$>$ $\_\_main\_\_$ :\\\\
+This is the driver function of the code/program , it simply calls the menu() function.\\\\
+2$>$ menu():\\\\
+This function ask , whether you want to Login/SignUp/Exit the system.\\\\
+3$>$ aadharCheck.cpp:\\\\
+This function or file checks whether the aadhar number entered is correct or not.
+4$>$ passCheck():\\\\
+This function checks whether the password entered by the user secured or not , or it is easy to crack.\\\\
+5$>$ checkEmail.cpp:\\\\
+This function or file checks whether the mail entered is correct or not\\\\
+6$>$ ver():\\\\
+This function handles the vercode.txt handling , which is used as a security OTP for the person that is trying to withdraw/deposit in the account.\\\\
+7$>$ login():\\\\
+This function allows the user to login in into the account , by checking whether the person with the given username and password exist or not.\\\\
+8$>$ afterlogin():\\\\
+This function help the user to do the functionalities like deposit , withdraw , see transaction history , see account details and graphs.\\\\
+9$>$ choiceMainMenu():\\\\
+This function helps in making choice in afterlogin function , it actually identify whether the choice entered is valid or not in afterlogin choice system.\\\\
+10$>$ graphChoiceChecker():\\\\
+This function is used to perform choice function in graphmenu function.\\\\
+11$>$ graphMenu():\\\\
+This functions is responsible for showing the graph to the user , that makes easier for the user to understand about his transaction history.\\\\
+12$>$ choiceAfterLogin.cpp :\\\\
+This is the choice selector file for afterLogin function in python
+13$>$ choiceLogin.cpp:\\\\
+This is the choice selector for login menu
+
+$$ PROFILING $$
+\includegraphics[scale=0.2]{profile1.png}\\
+                               \\\\
+\includegraphics[scale=0.2]{profile2.png}\\
+                               \\\\
+\includegraphics[scale=0.2]{profile3.png}\\
+                               \\\\
+\includegraphics[scale=0.2]{profile4.png}\\
+                               \\\\
+\includegraphics[scale=0.2]{profile5.png}\\
+\\\\
+
+$$DEBUGGING \hspace{5pt} USED$$\\
+First Debug -- Error--\\
+\includegraphics[scale=0.2]{error1.png}\\
+                               \\\\
+--Caught the error using debugger--(pdb in python)\\
+                               \\\\
+\includegraphics[scale=0.2]{error1debug.png}\\
+                               \\\\
+--Corrected the code--\\
+                               \\\\
+\includegraphics[scale=0.2]{error1sol.png}\\
+                               \\\\
+Second Debug --Error--\\
+                               \\\\
+\includegraphics[scale=0.2]{error2.png}\\
+                               \\\\
+--Caught the error using debugger-- (pdb in python)\\
+                               \\\\
+\includegraphics[scale=0.2]{error2debug.png}\\
+                               \\\\
+--Corrected the code--\\
+                               \\\\
+\includegraphics[scale=0.2]{error2sol.png}\\
+                               \\\\
+
+
+
+
+
+\lstinputlisting[language=Python]{atm.py}
+$$\LARGE{C++ \hspace{5pt}code \hspace{5pt}used \hspace{5pt}in \hspace{5pt}this\hspace{5pt} project}$$\\
+This is the choiceLogin.cpp file\\
+\lstinputlisting[language=C++]{choiceLogin.cpp}
+This is the aadharCheck.cpp file\\
+\lstinputlisting[language=C++]{aadharCheck.cpp}
+This is the checkEmail.cpp file\\
+\lstinputlisting[language=C++]{checkEmail.cpp}
+This is the choiceAfterLogin file\\
+\lstinputlisting[language=C++]{choiceAfterLogin.cpp}
+
+
+ $$OUTPUT \hspace{5pt} OF \hspace{5pt} THE \hspace{5pt} CODE$$ \\
+\begin{center}
+\large{This is the sign up part of the ATM system}\\
+\includegraphics[scale=0.2]{img1.png}\\
+\includegraphics[scale=0.2]{img2.png}\\
+\large{This is the second menu where you can do other functionalities}\\
+\includegraphics[scale=0.2]{img3.png}\\
+\includegraphics[scale=0.2]{img4.png}\\
+\includegraphics[scale=0.2]{img5.png}\\
+\includegraphics[scale=0.2]{img6.png}\\
+\includegraphics[scale=0.2]{img7.png}\\
+\includegraphics[scale=0.2]{img8.png}\\
+\includegraphics[scale=0.2]{img9.png}\\
+\includegraphics[scale=0.2]{img10.png}\\
+\includegraphics[scale=0.2]{img11.png}\\
+\includegraphics[scale=0.2]{img12.png}\\
+\end{center}
+
+
+
+\end{document}
