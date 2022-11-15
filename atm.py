@@ -48,8 +48,6 @@ checks for correct ( password , email and many more )
 """
 
 
-
-
 """ This function checks whether the mail is correct or not 
 , it checks all the possible mistakes that can be in the gmail
 """
@@ -171,7 +169,12 @@ def menu():
         speaker.Speak('Kindly provide necessary informations')
         print()
 
-        gml = checkEmail()
+        # gml = checkEmail()
+        call(["./checkEmail"])
+        f = open("checkEmail.txt", "r")
+        gml = f.read()
+
+        f.close()
         print()
 
         usrnm = str(input('UserName: '))
@@ -194,7 +197,12 @@ def menu():
             speaker.Speak('Enter again')
         print()
 
-        aadhar = call(["./aadharCheck"])
+        call(["./aadharCheck"])
+        # aadhar = call(["./aadharCheck"])
+
+        ff = open("checkAadhar.txt", "r")
+        aadhar = ff.read()
+        ff.close()
 
         while True:
 
@@ -256,8 +264,6 @@ def menu():
 
         print()
         afterLogin(usrnm)
-
-
 
 
 """ 
@@ -377,7 +383,7 @@ def afterLogin(usrnm):
 
         print('Cash Deposited')
         speaker.Speak('Cash Deposited')
-        
+
         df1.to_csv('transachist.csv')
 
         print()
